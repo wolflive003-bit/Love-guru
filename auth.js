@@ -93,4 +93,31 @@ loginForm.addEventListener('submit', async (e) => {
         loginBtn.disabled = false;
     }
 });
+let selectedAvatarFile = "avatar1.png";
+
+function selectAvatar(avatarName, element) {
+    document.querySelectorAll('.avatar-option').forEach(el => el.classList.remove('selected'));
+    element.classList.add('selected');
+    selectedAvatarFile = avatarName;
+}
+
+function loginUser() {
+    const username = document.getElementById("usernameInput").value.trim();
+    if (username === "") {
+        alert("Bhai apna naam toh likh!");
+        return;
+    }
+
+    const userData = {
+        username: username,
+        avatar: selectedAvatarFile,
+        diamonds: 100,
+        coins: 500,
+        tickets: 3,
+        vipLevel: 1 // Default VIP active for testing announcement!
+    };
+
+    localStorage.setItem("vipUser", JSON.stringify(userData));
+    window.location.href = "home.html";
+}
 
