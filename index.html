@@ -1,71 +1,83 @@
-let selectedAvatarFile = "avatar1.png";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Guru - VIP Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="logo-box">
+            <h1>💘 Love Guru VIP</h1>
+            <p>Enter the ultimate gaming & voice community</p>
+        </div>
 
-// 1. Avatar Selection Logic
-function selectAvatar(avatarName, element) {
-    const options = document.querySelectorAll('.avatar-option');
-    options.forEach(el => el.classList.remove('selected'));
-    
-    if(element) {
-        element.classList.add('selected');
-    }
-    selectedAvatarFile = avatarName;
-}
+        <div class="form-group">
+            <label>Your Username</label>
+            <input type="text" id="usernameInput" placeholder="Enter your gamer tag..." autocomplete="off">
+        </div>
 
-// 2. Login Logic
-function loginUser() {
-    const usernameInput = document.getElementById("usernameInput");
-    const username = usernameInput ? usernameInput.value.trim() : "";
-    
-    if (username === "") {
-        alert("Bhai apna username toh likh! ❌");
-        return;
-    }
+        <div class="form-group">
+            <label>Choose Your Avatar</label>
+            <div class="avatar-selector">
+                <div class="avatar-option selected" onclick="selectAvatar('avatar1.png', this)">
+                    <img src="https://api.dicebear.com/7.x/adventurer/svg?seed=Felix" alt="Avatar 1">
+                </div>
+                <div class="avatar-option" onclick="selectAvatar('avatar2.png', this)">
+                    <img src="https://api.dicebear.com/7.x/adventurer/svg?seed=Aneka" alt="Avatar 2">
+                </div>
+                <div class="avatar-option" onclick="selectAvatar('avatar3.png', this)">
+                    <img src="https://api.dicebear.com/7.x/adventurer/svg?seed=Jack" alt="Avatar 3">
+                </div>
+                <div class="avatar-option vip-exclusive" onclick="selectAvatar('avatar4.png', this)">
+                    <img src="https://api.dicebear.com/7.x/adventurer/svg?seed=VIPBoss" alt="VIP Boss">
+                    <span class="vip-tag-mini">VIP</span>
+                </div>
+                <div class="avatar-option vip-exclusive" onclick="selectAvatar('avatar5.png', this)">
+                    <img src="https://api.dicebear.com/7.x/adventurer/svg?seed=CyberQueen" alt="Cyber Queen">
+                    <span class="vip-tag-mini">VIP</span>
+                </div>
+            </div>
+        </div>
 
-    const userData = {
-        username: username,
-        avatar: selectedAvatarFile,
-        diamonds: 100,
-        coins: 500,
-        tickets: 3,
-        vipLevel: 1
-    };
+        <button class="main-btn" onclick="loginUser()">Enter Community 🚀</button>
+    </div>
 
-    localStorage.setItem("vipUser", JSON.stringify(userData));
-    window.location.href = "home.html";
-}
+    <script>
+        let selectedAvatarFile = "avatar1.png";
 
-// 3. Top-up & Telegram Bot Notification Logic
-function processPayment(amount) {
-    const upiId = "7014582566@fam";
-    const name = "VIP Chat Topup"; 
-    
-    let username = "Unknown User";
-    const userJSON = localStorage.getItem("vipUser");
-    if (userJSON) {
-        const user = JSON.parse(userJSON);
-        username = user.username;
-    }
+        function selectAvatar(avatarName, element) {
+            const options = document.querySelectorAll('.avatar-option');
+            options.forEach(el => el.classList.remove('selected'));
+            
+            if(element) {
+                element.classList.add('selected');
+            }
+            selectedAvatarFile = avatarName;
+        }
 
-    const botToken = "8698387580:AAFsa-InQWh_xzP8X4Jopf-cDg4-3BUdY4Q"; 
-    const chatId = "8523021225"; 
-    
-    const message = `🚨 NEW TOPUP REQUEST! 💎\n\n👤 User: ${username}\n💰 Amount: ₹${amount}\n📱 UPI: ${upiId}\n\nStatus: Waiting for screenshot!`;
-    
-    if (botToken !== "7500000000:AAExampleBotTokenHereToTest") {
-        fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-            method: "POST",
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ chat_id: chatId, text: message })
-        }).catch(err => console.log("Bot msg error:", err));
-    }
+        function loginUser() {
+            const usernameInput = document.getElementById("usernameInput");
+            const username = usernameInput ? usernameInput.value.trim() : "";
+            
+            if (username === "") {
+                alert("Bhai apna username toh likh! ❌");
+                return;
+            }
 
-    const upiLink = `upi://pay?pa=${upiId}&pn=${encodeURIComponent(name)}&am=${amount}&cu=INR`;
-    window.location.href = upiLink;
-    
-    alert(`Payment app open ho rahi hai (₹${amount}). Payment ke baad screenshot admin ko bhejo! 🚀`);
-    
-    if (typeof closeTopup === 'function') {
-        closeTopup();
-    }
-}
+            const userData = {
+                username: username,
+                avatar: selectedAvatarFile,
+                diamonds: 100,
+                coins: 500,
+                tickets: 3,
+                vipLevel: 1
+            };
 
+            localStorage.setItem("vipUser", JSON.stringify(userData));
+            window.location.href = "home.html";
+        }
+    </script>
+</body>
+</html>
