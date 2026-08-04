@@ -2,14 +2,14 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-// TERI NAYI FIREBASE CONFIG (wolf-e32e5 project)
+// TERI FIREBASE CONFIG (wolf-e32e5 project)
 const firebaseConfig = {
-  apiKey: "AIzaSyBIGOsCnSjDOq6tyyZwJfk...", // Yahan pura API key daalna
+  apiKey: "AIzaSyBIGOsCnSjDOq6tyyZwJfk...", 
   authDomain: "wolf-e32e5.firebaseapp.com",
   projectId: "wolf-e32e5",
   storageBucket: "wolf-e32e5.firebasestorage.app",
   messagingSenderId: "718132070256",
-  appId: "1:718132070256:web:ed38cdb69...", // Yahan pura App ID daalna
+  appId: "1:718132070256:web:ed38cdb69...", 
   measurementId: "G-5KS4SVKH93"
 };
 
@@ -17,107 +17,97 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// Form Submit Event Listener
-const loginForm = document.getElementById('loginForm');
+// Global variable to store selected avatar
+let selectedAvatarFile = "avatar1";
 
-loginForm.addEventListener('submit', async (e) => {
-    e.preventDefault(); // Page reload rokne ke liye
+// 1. Avatar Selection Logic
+window.selectAvatar = function(avatarName, element) {
+    document.querySelectorAll('.avatar-option').forEach(el => el.classList.remove('selected'));
+    if(element) {
+        element.classList.add('selected');
+    }
+    selectedAvatarFile = avatarName;
+};
 
-    // Form ki values nikalna
-    const username = document.getElementById('username').value.trim();
-    const password = document.getElementById('password').value.trim();
+// 2. Login & Sign Up Logic with Firebase
+window.loginUser = async function() {
+    const usernameInput = document.getElementById("usernameInput");
+    const username = usernameInput ? usernameInput.value.trim() : "";
     
-    // Selected Gender aur Avatar nikalna
-    const gender = document.querySelector('input[name="gender"]:checked').value;
-    const avatar = document.querySelector('input[name="avatar"]:checked').value;
-
-    if(username === "" || password === "") {
-        alert("Bhai Username aur Password daalna zaroori hai! ❌");
+    if (username === "") {
+        alert("Bhai apna username toh likh! ❌");
         return;
     }
 
     try {
-        // Button text change karke loading feel dena
-        const loginBtn = document.getElementById('loginBtn');
-        loginBtn.innerText = "WAIT KAR BHAI... ⏳";
-        loginBtn.disabled = true;
-
-        // Firestore database mein 'users' collection ke andar username check karna
+        // Firestore mein check karo ki user pehle se hai ya nahi
         const userRef = doc(db, "users", username);
         const userSnap = await getDoc(userRef);
 
+        let userData;
+
         if (userSnap.exists()) {
             // USER PEHLE SE HAI (LOGIN)
-            const userData = userSnap.data();
-            
-            if (userData.password === password) {
-                // Login Success - Data local storage mein save kar lo
-                localStorage.setItem("vipUser", JSON.stringify(userData));
-                alert("Welcome Back " + username + "! 😎");
-                window.location.href = "home.html"; // Redirect to Dashboard
-            } else {
-                alert("Galat Password! Hacker banne ki koshish mat kar. ❌");
-                loginBtn.innerText = "LOGIN / SIGN UP";
-                loginBtn.disabled = false;
-            }
+            userData = userSnap.data();
+            alert("Welcome Back " + username + "! 😎");
         } else {
-            // NAYA USER HAI (SIGN UP)
-            const newUserData = {
+            // NAYA USER HAI (SIGN UP) - Isme free diamonds/tickets bhi mil jayenge
+            userData = {
                 username: username,
-                password: password, // Asli app mein password hash karte hain, par abhi basic chalega
-                gender: gender,
-                avatar: avatar,
-                diamonds: 0,     // Naye user ko 0 diamond
-                coins: 0,        // Naye user ko 0 coins
-                vipLevel: 0,     // VIP level 0 se start hoga
-                tickets: 0,      // Anonymous chat tickets
+                avatar: selectedAvatarFile,
+                diamonds: 100,
+                coins: 500,
+                tickets: 3,
+                vipLevel: 1,
                 joinedAt: new Date().toISOString()
             };
 
             // Database mein save karna
-            await setDoc(userRef, newUserData);
-            
-            // Local storage mein save karna (taaki next pages par user ki details dikhe)
-            localStorage.setItem("vipUser", JSON.stringify(newUserData));
-            
+            await setDoc(userRef, userData);
             alert("Naya Account Ban Gaya! Welcome to VIP Chat 🔥");
-            window.location.href = "home.html"; // Redirect to Dashboard
         }
+
+        // Local Storage mein save karke dashboard par bhej do
+        localStorage.setItem("vipUser", JSON.stringify(userData));
+        window.location.href = "home.html";
+
     } catch (error) {
         console.error("Database Error: ", error);
-        alert("Kuch error aagaya bhai, internet check kar.");
-        
-        // Button reset
-        const loginBtn = document.getElementById('loginBtn');
-        loginBtn.innerText = "LOGIN / SIGN UP";
-        loginBtn.disabled = false;
+        alert("Kuch error aagaya bhai, internet connection check kar.");
     }
-});
-let selectedAvatarFile = "avatar1.png";
+};
 
-function selectAvatar(avatarName, element) {
-    document.querySelectorAll('.avatar-option').forEach(el => el.classList.remove('selected'));
-    element.classList.add('selected');
-    selectedAvatarFile = avatarName;
-}
-
-function loginUser() {
-    const username = document.getElementById("usernameInput").value.trim();
-    if (username === "") {
-        alert("Bhai apna naam toh likh!");
-        return;
+// 3. Top-up & Telegram Bot Notification Logic
+window.processPayment = function(amount) {
+    const upiId = "7014582566@fam";
+    const name = "VIP Chat Topup"; 
+    
+    let username = "Unknown User";
+    const userJSON = localStorage.getItem("vipUser");
+    if (userJSON) {
+        const user = JSON.parse(userJSON);
+        username = user.username;
     }
 
-    const userData = {
-        username: username,
-        avatar: selectedAvatarFile,
-        diamonds: 100,
-        coins: 500,
-        tickets: 3,
-        vipLevel: 1 // Default VIP active for testing announcement!
-    };
+    const botToken = "8698387580:AAFsa-InQWh_xzP8X4Jopf-cDg4-3BUdY4Q"; 
+    const chatId = "8523021225"; 
+    
+    const message = `🚨 NEW TOPUP REQUEST! 💎\n\n👤 User: ${username}\n💰 Amount: ₹${amount}\n📱 UPI: ${upiId}\n\nStatus: Waiting for screenshot!`;
+    
+    if (botToken !== "7500000000:AAExampleBotTokenHereToTest") {
+        fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+            method: "POST",
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ chat_id: chatId, text: message })
+        }).catch(err => console.log("Bot msg error:", err));
+    }
 
-    localStorage.setItem("vipUser", JSON.stringify(userData));
-    window.location.href = "home.html";
-}
-
+    const upiLink = `upi://pay?pa=${upiId}&pn=${encodeURIComponent(name)}&am=${amount}&cu=INR`;
+    window.location.href = upiLink;
+    
+    alert(`Payment app open ho rahi hai (₹${amount}). Payment ke baad screenshot admin ko bhejo! 🚀`);
+    
+    if (typeof closeTopup === 'function') {
+        closeTopup();
+    }
+};
