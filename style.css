@@ -6,7 +6,7 @@
 }
 
 body {
-    background-color: #0b0f19;
+    background-color: #120406;
     color: #ffffff;
     display: flex;
     justify-content: center;
@@ -16,23 +16,24 @@ body {
 
 /* Login Container */
 .login-container {
-    background: #131b2e;
+    background: linear-gradient(145deg, #2a080c, #130204);
     padding: 30px;
-    border-radius: 15px;
+    border-radius: 20px;
     width: 90%;
     max-width: 400px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.5);
-    border: 1px solid #1f2a48;
+    box-shadow: 0 10px 30px rgba(255, 0, 85, 0.3);
+    border: 1px solid #ff2a6d;
 }
 
 .logo-box h1 {
-    color: #00ffa2;
+    color: #ffd700;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
     margin-bottom: 5px;
 }
 
 .logo-box p {
-    color: #8b9bb4;
-    font-size: 14px;
+    color: #ff99bb;
+    font-size: 13px;
     margin-bottom: 20px;
 }
 
@@ -44,15 +45,15 @@ body {
     display: block;
     margin-bottom: 8px;
     font-size: 14px;
-    color: #cbd5e1;
+    color: #ffd700;
 }
 
 .form-group input {
     width: 100%;
     padding: 12px;
-    background: #0b0f19;
-    border: 1px solid #2d3748;
-    border-radius: 8px;
+    background: #0a0102;
+    border: 1px solid #ff2a6d;
+    border-radius: 10px;
     color: #fff;
     font-size: 16px;
 }
@@ -69,10 +70,10 @@ body {
     width: 55px;
     height: 55px;
     border-radius: 50%;
-    border: 2px solid #2d3748;
+    border: 2px solid #ff2a6d;
     cursor: pointer;
     position: relative;
-    background: #1e293b;
+    background: #1e050a;
     flex-shrink: 0;
     overflow: hidden;
 }
@@ -83,14 +84,14 @@ body {
 }
 
 .avatar-option.selected {
-    border-color: #00ffa2;
-    box-shadow: 0 0 10px rgba(0,255,162,0.5);
+    border-color: #ffd700;
+    box-shadow: 0 0 15px #ffd700;
 }
 
 .vip-tag-mini {
     position: absolute;
     bottom: 0;
-    background: gold;
+    background: linear-gradient(135deg, #ffd700, #ff8c00);
     color: #000;
     font-size: 9px;
     width: 100%;
@@ -98,36 +99,30 @@ body {
     font-weight: bold;
 }
 
-/* Buttons */
+/* Main Button */
 .main-btn {
     width: 100%;
     padding: 12px;
-    background: linear-gradient(135deg, #00ffa2, #00b8ff);
+    background: linear-gradient(135deg, #ff2a6d, #ff6b8b);
     border: none;
-    border-radius: 8px;
-    color: #0b0f19;
+    border-radius: 10px;
+    color: #fff;
     font-weight: bold;
     font-size: 16px;
     cursor: pointer;
-    transition: 0.2s;
+    box-shadow: 0 4px 15px rgba(255, 42, 109, 0.4);
 }
 
-.main-btn:active {
-    transform: scale(0.98);
-}
-
-/* App Header & Layout */
+/* App Header */
 .app-header {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background: #131b2e;
+    top: 0; left: 0; width: 100%;
+    background: rgba(18, 4, 6, 0.95);
     padding: 10px 15px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #1f2a48;
+    border-bottom: 1px solid #ff2a6d55;
     z-index: 100;
 }
 
@@ -139,245 +134,122 @@ body {
 }
 
 .user-profile-summary img {
-    width: 40px;
-    height: 40px;
+    width: 40px; height: 40px;
     border-radius: 50%;
-    border: 2px solid #00ffa2;
+    border: 2px solid #ffd700;
 }
 
-.vip-badge {
-    background: linear-gradient(135deg, gold, darkorange);
-    color: #000;
+/* VIP Tags Styles (Jaise tune bheje the) */
+.vip-badge-tag {
+    background: linear-gradient(135deg, #8b5cf6, #ec4899);
+    color: #fff;
     font-size: 10px;
-    padding: 1px 6px;
-    border-radius: 4px;
+    padding: 2px 8px;
+    border-radius: 12px;
     font-weight: bold;
+    box-shadow: 0 0 10px rgba(236, 72, 153, 0.5);
 }
+
+.vip-tag-v2 { background: linear-gradient(135deg, #b45309, #d97706); border: 1px solid #fbbf24; }
+.vip-tag-count { background: linear-gradient(135deg, #1d4ed8, #3b82f6); }
+.vip-tag-baron { background: linear-gradient(135deg, #047857, #10b981); }
+.vip-tag-amber { background: linear-gradient(135deg, #6b21a8, #9333ea); }
 
 .wallet-box {
-    background: #0b0f19;
+    background: #0a0102;
     padding: 6px 12px;
     border-radius: 20px;
     display: flex;
     gap: 10px;
     font-size: 13px;
-    border: 1px solid #2d3748;
+    border: 1px solid #ff2a6d55;
     align-items: center;
-    cursor: pointer;
 }
 
-.topup-plus-btn {
-    background: #00ffa2;
-    border: none;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-/* Content Sections */
+/* App Content Sections */
 .app-content {
     margin-top: 70px;
     margin-bottom: 70px;
-    padding: 20px;
+    padding: 15px;
     width: 100%;
     max-width: 500px;
 }
 
-.app-section {
-    display: none;
+.app-section { display: none; }
+.app-section.active-section { display: block; }
+
+/* 🌟 8-MIC SEAT PARTY ROOM (Achat Style) 🌟 */
+.party-room-container {
+    background: radial-gradient(circle, #3d0a14 0%, #120406 100%);
+    border: 2px solid #ff2a6d;
+    border-radius: 20px;
+    padding: 15px;
+    box-shadow: inset 0 0 30px rgba(255, 0, 85, 0.3);
 }
 
-.app-section.active-section {
-    display: block;
+.room-top-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
 }
 
-/* Bottom Nav */
+.mic-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.mic-seat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+
+.mic-circle {
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    background: #2a080c;
+    border: 2px dashed #ffd700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    position: relative;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+}
+
+.mic-circle.occupied {
+    border: 2px solid #00ffa2;
+    background: #042918;
+}
+
+.seat-number {
+    font-size: 11px;
+    margin-top: 4px;
+    color: #ff99bb;
+}
+
+/* Bottom Nav Bar */
 .bottom-nav {
     position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background: #131b2e;
+    bottom: 0; left: 0; width: 100%;
+    background: rgba(18, 4, 6, 0.95);
     display: flex;
     justify-content: space-around;
     padding: 10px 0;
-    border-top: 1px solid #1f2a48;
+    border-top: 1px solid #ff2a6d55;
     z-index: 100;
 }
 
 .nav-item {
-    background: none;
-    border: none;
-    color: #8b9bb4;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-size: 18px;
+    background: none; border: none;
+    color: #ff99bb;
+    display: flex; flex-direction: column;
+    align-items: center; font-size: 18px;
     cursor: pointer;
 }
-
-.nav-item span {
-    font-size: 11px;
-    margin-top: 2px;
-}
-
-.nav-item.active {
-    color: #00ffa2;
-}
-
-/* Gender Selection Matchmaking */
-.gender-selection {
-    display: flex;
-    gap: 10px;
-    margin: 15px 0;
-}
-
-.gender-btn {
-    flex: 1;
-    padding: 10px;
-    background: #131b2e;
-    border: 1px solid #2d3748;
-    color: #fff;
-    border-radius: 8px;
-    cursor: pointer;
-}
-
-.gender-btn.active {
-    background: #00ffa2;
-    color: #0b0f19;
-    font-weight: bold;
-    border-color: #00ffa2;
-}
-
-.ticket-info-box {
-    background: #131b2e;
-    padding: 15px;
-    border-radius: 8px;
-    margin-bottom: 15px;
-    border: 1px solid #1f2a48;
-}
-
-/* Voice Call UI */
-.join-box {
-    display: flex;
-    gap: 10px;
-    margin-top: 15px;
-}
-
-.join-box input {
-    flex: 1;
-    padding: 10px;
-    background: #131b2e;
-    border: 1px solid #2d3748;
-    border-radius: 8px;
-    color: #fff;
-}
-
-.secondary-btn {
-    padding: 10px 20px;
-    background: #1f2a48;
-    border: none;
-    border-radius: 8px;
-    color: #fff;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.active-call-box {
-    background: #131b2e;
-    padding: 20px;
-    border-radius: 12px;
-    text-align: center;
-    border: 1px solid #00ffa2;
-    margin-top: 20px;
-}
-
-.call-action-buttons {
-    display: flex;
-    gap: 10px;
-    margin-top: 15px;
-}
-
-.action-btn {
-    flex: 1;
-    padding: 10px;
-    border: none;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.mic-on { background: #00ffa2; color: #0b0f19; }
-.mic-off { background: #eab308; color: #0b0f19; }
-.leave-btn { background: #ef4444; color: #fff; }
-
-/* Modal */
-.modal {
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.8);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 200;
-}
-
-.modal-content {
-    background: #131b2e;
-    padding: 25px;
-    border-radius: 12px;
-    width: 90%;
-    max-width: 350px;
-    border: 1px solid #1f2a48;
-    text-align: center;
-}
-
-.pack-btn {
-    width: 100%;
-    padding: 12px;
-    background: #1f2a48;
-    border: 1px solid #2d3748;
-    color: #fff;
-    border-radius: 8px;
-    margin-top: 10px;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-.close-modal-btn {
-    background: none;
-    border: none;
-    color: #8b9bb4;
-    margin-top: 15px;
-    cursor: pointer;
-}
-
-/* Profile Card */
-.profile-card {
-    background: #131b2e;
-    padding: 30px;
-    border-radius: 12px;
-    text-align: center;
-    border: 1px solid #1f2a48;
-}
-
-.profile-card img {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    border: 3px solid #00ffa2;
-    margin-bottom: 10px;
-}
-
-.logout-btn {
-    margin-top: 20px;
-    padding: 10px 20px;
-    background: #ef4444;
-    border: none;
-    border-radius: 8px;
-    color: #fff;
-    font-weight: bold;
-    cursor: pointer;
-}
+.nav-item span { font-size: 11px; margin-top: 2px; }
+.nav-item.active { color: #ffd700; text-shadow: 0 0 10px #ffd700; }
