@@ -1,4 +1,6 @@
-// Jab page load ho, toh user ka data check karo
+// ==========================================
+// INITIALIZATION & USER DATA LOAD
+// ==========================================
 document.addEventListener("DOMContentLoaded", () => {
     // LocalStorage se user ka data nikalna
     const userJSON = localStorage.getItem("vipUser");
@@ -70,18 +72,40 @@ function logout() {
 }
 
 // ==========================================
-// TOP-UP FUNCTION (Telegram Bot Trigger Point)
+// TOP-UP FUNCTION (UPI Integration)
 // ==========================================
 function showTopup() {
-    alert("VIP Top-up Store khul raha hai... \n(Yahan hum tera wo Telegram Webhook wala UPI system connect karenge!)");
+    // Abhi ke liye ek simple prompt
+    let amount = prompt("Kitne rupay ka Top-up karna hai? \n(Offer: ₹10 = 500 💎, ₹50 = 3000 💎)");
+
+    if (amount && amount > 0) {
+        // TERI UPI ID YAHAN SET HAI
+        const upiId = "7014582566@fam";
+        const name = "VIP Chat Topup"; 
+        
+        // UPI Deep Link generate karna (Ye direct PhonePe/GPay/Paytm kholega)
+        const upiLink = `upi://pay?pa=${upiId}&pn=${name}&am=${amount}&cu=INR`;
+
+        // User ke phone mein UPI app open karne ka command
+        window.location.href = upiLink;
+
+        // Payment par click karne ke baad alert
+        alert("Payment app open ho rahi hai... Payment successful hone ke baad admin aapke Diamonds credit kar dega! 😎");
+        
+    } else {
+        alert("Top-up cancel kar diya gaya.");
+    }
 }
 
-// Match Gender Button Logic
+// ==========================================
+// MATCH GENDER BUTTON LOGIC
+// ==========================================
 const genderBtns = document.querySelectorAll('.gender-btn');
 genderBtns.forEach(btn => {
     btn.addEventListener('click', () => {
+        // Sabse active class hatao
         genderBtns.forEach(b => b.classList.remove('active'));
+        // Jispe click hua uspe lagao
         btn.classList.add('active');
     });
 });
-
