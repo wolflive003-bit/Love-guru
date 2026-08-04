@@ -72,30 +72,31 @@ function logout() {
 }
 
 // ==========================================
-// TOP-UP FUNCTION (UPI Integration)
+// NEW VIP STORE LOGIC (Custom Modal)
 // ==========================================
 function showTopup() {
-    // Abhi ke liye ek simple prompt
-    let amount = prompt("Kitne rupay ka Top-up karna hai? \n(Offer: ₹10 = 500 💎, ₹50 = 3000 💎)");
-
-    if (amount && amount > 0) {
-        // TERI UPI ID YAHAN SET HAI
-        const upiId = "7014582566@fam";
-        const name = "VIP Chat Topup"; 
-        
-        // UPI Deep Link generate karna (Ye direct PhonePe/GPay/Paytm kholega)
-        const upiLink = `upi://pay?pa=${upiId}&pn=${name}&am=${amount}&cu=INR`;
-
-        // User ke phone mein UPI app open karne ka command
-        window.location.href = upiLink;
-
-        // Payment par click karne ke baad alert
-        alert("Payment app open ho rahi hai... Payment successful hone ke baad admin aapke Diamonds credit kar dega! 😎");
-        
-    } else {
-        alert("Top-up cancel kar diya gaya.");
-    }
+    // Ye ab sasta prompt nahi, balki humara custom modal kholega
+    document.getElementById("topupModal").style.display = "flex";
 }
+
+function closeTopup() {
+    // Modal ko band karne ke liye
+    document.getElementById("topupModal").style.display = "none";
+}
+
+function processPayment(amount) {
+    // TERI UPI ID
+    const upiId = "7014582566@fam";
+    const name = "VIP Chat Topup"; 
+    
+    const upiLink = `upi://pay?pa=${upiId}&pn=${name}&am=${amount}&cu=INR`;
+
+    window.location.href = upiLink;
+
+    alert("Payment app open ho rahi hai... Payment ke baad humara system automatically check karega!");
+    closeTopup(); // Payment click hone ke baad modal band kar do
+}
+
 
 // ==========================================
 // MATCH GENDER BUTTON LOGIC
