@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Love Guru - Dashboard</title>
+    <title>Love Guru - Royal Party Room</title>
     <link rel="stylesheet" href="style.css">
-    <!-- PeerJS for 100% Free Voice Rooms without API Keys -->
     <script src="https://unpkg.com/peerjs@1.5.1/dist/peerjs.min.js"></script>
 </head>
 <body>
@@ -16,101 +15,90 @@
             <img id="userAvatar" src="" alt="Avatar">
             <div>
                 <h4 id="displayUsername">User</h4>
-                <span id="vipBadge" class="vip-badge">VIP 0</span>
+                <span id="vipTagUI" class="vip-badge-tag vip-tag-v2">VIP 2</span>
             </div>
         </div>
-        <div class="wallet-box" onclick="showTopup()">
-            <span>💎 <b id="diamondCount">0</b></span>
-            <span>🪙 <b id="coinCount">0</b></span>
-            <button class="topup-plus-btn">+</button>
+        <div class="wallet-box">
+            <span>💎 <b id="diamondCount">500</b></span>
+            <span>🪙 <b id="coinCount">1200</b></span>
         </div>
     </header>
 
-    <!-- MAIN CONTENT SECTIONS -->
+    <!-- MAIN CONTENT -->
     <main class="app-content">
 
-        <!-- 1. HOME SECTION (Matchmaking) -->
-        <section id="home-section" class="app-section active-section">
-            <h2>Find Your Match 💘</h2>
-            <p>Select match type below:</p>
+        <!-- 1. PARTY ROOM SECTION (8-MIC SEATS) -->
+        <section id="party-section" class="app-section active-section">
+            <div class="party-room-container">
+                <div class="room-top-info">
+                    <h3>🌹 Royal Party Room</h3>
+                    <span id="roomStatusBadge" style="color: #ffd700; font-size: 12px;">Tap seat to take mic</span>
+                </div>
 
-            <div class="gender-selection">
-                <button class="gender-btn active">Any</button>
-                <button class="gender-btn">Girl</button>
-                <button class="gender-btn">Boy</button>
+                <!-- 8 Mic Seats Grid -->
+                <div class="mic-grid">
+                    <div class="mic-seat" onclick="takeMic(1)">
+                        <div class="mic-circle" id="seat1">🎙️</div>
+                        <span class="seat-number">Host (1)</span>
+                    </div>
+                    <div class="mic-seat" onclick="takeMic(2)">
+                        <div class="mic-circle" id="seat2">🔒</div>
+                        <span class="seat-number">Seat 2</span>
+                    </div>
+                    <div class="mic-seat" onclick="takeMic(3)">
+                        <div class="mic-circle" id="seat3">🎙️</div>
+                        <span class="seat-number">Seat 3</span>
+                    </div>
+                    <div class="mic-seat" onclick="takeMic(4)">
+                        <div class="mic-circle" id="seat4">🎙️</div>
+                        <span class="seat-number">Seat 4</span>
+                    </div>
+                    <div class="mic-seat" onclick="takeMic(5)">
+                        <div class="mic-circle" id="seat5">🎙️</div>
+                        <span class="seat-number">Seat 5</span>
+                    </div>
+                    <div class="mic-seat" onclick="takeMic(6)">
+                        <div class="mic-circle" id="seat6">🎙️</div>
+                        <span class="seat-number">Seat 6</span>
+                    </div>
+                    <div class="mic-seat" onclick="takeMic(7)">
+                        <div class="mic-circle" id="seat7">🎙️</div>
+                        <span class="seat-number">Seat 7</span>
+                    </div>
+                    <div class="mic-seat" onclick="takeMic(8)">
+                        <div class="mic-circle" id="seat8">🎙️</div>
+                        <span class="seat-number">Seat 8</span>
+                    </div>
+                </div>
+
+                <button class="main-btn" onclick="createOrJoinRoom()">Open / Join Audio Stream 🎧</button>
             </div>
-
-            <div class="ticket-info-box">
-                <p class="ticket-info">Cost: <span style="color: #00ffa2; font-weight:bold;">FREE (0 Tickets)</span></p>
-                <p>Tickets Available: 🎟️ <span id="ticketCount">3</span></p>
-            </div>
-
-            <button class="main-btn" id="findMatchBtn">Start Matching 🔍</button>
         </section>
 
-        <!-- 2. LIVE AUDIO ROOMS SECTION (PeerJS Powered) -->
-        <section id="live-section" class="app-section">
-            <h2>Live Audio Rooms 🎙️</h2>
-            
-            <div class="room-controls">
-                <button class="main-btn" onclick="createVoiceRoom()">Create Room 🎧</button>
-                <div class="join-box">
-                    <input type="text" id="joinRoomUid" placeholder="Enter Room UID..." autocomplete="off">
-                    <button class="secondary-btn" onclick="joinVoiceRoom()">Join Room</button>
-                </div>
-            </div>
-
-            <div id="activeCallUI" style="display: none;" class="active-call-box">
-                <h3 id="currentRoomDisplay">Room UID: -</h3>
-                <p id="callStatus" style="font-weight: bold; color: yellow;">Connecting...</p>
-                
-                <div class="call-action-buttons">
-                    <button id="micBtn" class="action-btn mic-on" onclick="toggleMic()">🎙️ Mic ON</button>
-                    <button class="action-btn leave-btn" onclick="leaveVoiceRoom()">❌ Leave Room</button>
-                </div>
-            </div>
-        </section>
-
-        <!-- 3. CHAT SECTION -->
+        <!-- 2. CHAT SECTION -->
         <section id="chat-section" class="app-section">
-            <h2>Private Chat 💬</h2>
-            <div class="form-group" style="margin-top: 20px;">
-                <label>Search User ID</label>
-                <input type="text" id="searchUserId" placeholder="Type username...">
-            </div>
-            <button class="main-btn" onclick="searchUserForChat()">Open Chat</button>
+            <h2>Royal Inbox 💬</h2>
+            <p style="color: #ff99bb; margin-top: 10px;">No new messages.</p>
         </section>
 
-        <!-- 4. PROFILE SECTION -->
+        <!-- 3. PROFILE SECTION -->
         <section id="profile-section" class="app-section">
-            <div class="profile-card">
-                <img id="profileAvatar" src="" alt="Profile">
+            <div style="background: #2a080c; padding: 25px; border-radius: 15px; text-align: center; border: 1px solid #ff2a6d;">
+                <img id="profileAvatar" src="" alt="Profile" style="width: 80px; height: 80px; border-radius: 50%; border: 3px solid #ffd700; margin-bottom: 10px;">
                 <h2 id="profileUsername">User</h2>
-                <p>App ID: <span id="appIdSpan">#102938</span></p>
-                <button class="logout-btn" onclick="logout()">Logout 🚪</button>
+                <p style="margin: 10px 0;"><span class="vip-badge-tag vip-tag-amber">Amber Tag</span> <span class="vip-badge-tag vip-tag-baron">Baron</span></p>
+                <button onclick="logout()" style="margin-top: 15px; background: #ef4444; border: none; padding: 8px 15px; color:#fff; border-radius: 8px; font-weight:bold; cursor:pointer;">Logout 🚪</button>
             </div>
         </section>
 
     </main>
 
-    <!-- BOTTOM NAVIGATION BAR -->
+    <!-- BOTTOM NAV -->
     <nav class="bottom-nav">
-        <button class="nav-item active" onclick="switchTab('home-section')">🏠<span>Home</span></button>
-        <button class="nav-item" onclick="switchTab('live-section')">🎙️<span>Live</span></button>
+        <button class="nav-item active" onclick="switchTab('party-section')">🎙️<span>Party</span></button>
         <button class="nav-item" onclick="switchTab('chat-section')">💬<span>Chat</span></button>
-        <button class="nav-item" onclick="switchTab('profile-section')">👤<span>Profile</span></button>
+        <button class="nav-item" onclick="switchTab('profile-section')">👤<span>Mine</span></button>
     </nav>
-
-    <!-- TOPUP MODAL -->
-    <div id="topupModal" class="modal" style="display: none;">
-        <div class="modal-content">
-            <h3>VIP Top-up Store 💎</h3>
-            <p>Select Diamond Pack:</p>
-            <button class="pack-btn" onclick="processPayment(50)">50 INR = 500 Diamonds 💎</button>
-            <button class="pack-btn" onclick="processPayment(100)">100 INR = 1200 Diamonds 💎</button>
-            <button class="close-modal-btn" onclick="closeTopup()">Cancel</button>
-        </div>
-    </div>
 
     <script src="app.js"></script>
 </body>
