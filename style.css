@@ -338,3 +338,73 @@ h2 {
     cursor: pointer;
     margin-top: 20px;
 }
+/* =========================================
+   VIP STORE MODAL (Custom Popup)
+   ========================================= */
+.modal-overlay {
+    display: none; /* By default hidden */
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background: #1a1a24;
+    padding: 30px;
+    border-radius: 16px;
+    border: 1px solid #00b8ff;
+    width: 90%;
+    max-width: 350px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 0 30px rgba(0, 184, 255, 0.2);
+    animation: scaleUp 0.3s ease;
+}
+
+@keyframes scaleUp {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px; right: 20px;
+    color: #888;
+    font-size: 28px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.close-btn:hover { color: #ff3333; }
+
+.pack-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.pack-btn {
+    background: #242430;
+    border: 1px solid #333;
+    padding: 16px;
+    border-radius: 12px;
+    color: #fff;
+    font-size: 16px;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.pack-btn:hover, .pack-btn:active {
+    border-color: #00b8ff;
+    background: rgba(0, 184, 255, 0.15);
+    box-shadow: 0 0 10px rgba(0, 184, 255, 0.3);
+}
+
+.pack-price { font-weight: bold; color: #fff; }
+.pack-reward { font-weight: bold; color: #00b8ff; }
