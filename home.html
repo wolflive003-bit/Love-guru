@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>VIP CHAT - Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="dashboard-body">
+
+    <!-- TOP HEADER: User Stats -->
+    <header class="top-header">
+        <div class="user-info">
+            <img id="userAvatar" src="" alt="Avatar" class="small-avatar">
+            <div>
+                <h3 id="displayUsername">Loading...</h3>
+                <span id="vipBadge" class="vip-tag">VIP 0</span>
+            </div>
+        </div>
+        <div class="currency-info">
+            <div class="currency">
+                <i class="fa-solid fa-gem" style="color: #00ffff;"></i> <span id="diamondCount">0</span>
+            </div>
+            <div class="currency">
+                <i class="fa-solid fa-coins" style="color: #ffd700;"></i> <span id="coinCount">0</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="content-area">
+        
+        <!-- SECTION 1: HOME (Anonymous Matchmaking & Topup) -->
+        <section id="homeSection" class="app-section active-section">
+            <h2>Anonymous Chat 🕵️‍♂️</h2>
+            <div class="match-card">
+                <p>Select gender to match:</p>
+                <div class="match-gender">
+                    <button class="gender-btn active">Any</button>
+                    <button class="gender-btn">Girl</button>
+                    <button class="gender-btn">Boy</button>
+                </div>
+                <p class="ticket-info">Cost: 1 Ticket 🎟️ (Available: <span id="ticketCount">0</span>)</p>
+                <button id="findMatchBtn" class="primary-btn pulse-btn">FIND MATCH</button>
+            </div>
+
+            <div class="topup-banner" onclick="showTopup()">
+                <h3>💎 VIP Top-Up Store</h3>
+                <p>Get Diamonds & Upgrade VIP Level!</p>
+            </div>
+        </section>
+
+        <!-- SECTION 2: LIVE ROOMS (Agora) -->
+        <section id="liveSection" class="app-section">
+            <h2>Live Audio Rooms 🎙️</h2>
+            <div class="room-list">
+                <div class="room-card">
+                    <h4>Late Night Chill 🌙</h4>
+                    <p>Host: VIP_Rahul | 👥 12/50</p>
+                    <button class="join-btn">Join</button>
+                </div>
+                <div class="room-card">
+                    <h4>Only VIPs 😎</h4>
+                    <p>Host: Hacker_007 | 👥 5/10</p>
+                    <button class="join-btn">Join</button>
+                </div>
+            </div>
+            <button class="primary-btn" style="margin-top: 20px;">+ CREATE ROOM</button>
+        </section>
+
+        <!-- SECTION 3: CHATS (CometChat) -->
+        <section id="chatSection" class="app-section">
+            <h2>Private Chats 💬</h2>
+            <div class="chat-list">
+                <p style="text-align: center; color: #888; margin-top: 20px;">No active chats. Find a match first!</p>
+            </div>
+        </section>
+
+        <!-- SECTION 4: PROFILE -->
+        <section id="profileSection" class="app-section">
+            <h2>My Profile ⚙️</h2>
+            <div class="profile-card">
+                <img id="profileAvatar" src="" alt="Profile" class="large-avatar">
+                <h3 id="profileUsername">Name</h3>
+                <p>App ID: <span id="appIdSpan" style="color:#00ffa2;">#123456</span></p>
+                <div class="tags-container">
+                    <span class="cool-tag">🔥 Newbie</span>
+                </div>
+                <button class="logout-btn" onclick="logout()">LOGOUT</button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- BOTTOM NAVIGATION BAR -->
+    <nav class="bottom-nav">
+        <button class="nav-item active" onclick="switchTab('homeSection')">
+            <i class="fa-solid fa-house"></i>
+            <span>Home</span>
+        </button>
+        <button class="nav-item" onclick="switchTab('liveSection')">
+            <i class="fa-solid fa-headset"></i>
+            <span>Live</span>
+        </button>
+        <button class="nav-item" onclick="switchTab('chatSection')">
+            <i class="fa-solid fa-comment-dots"></i>
+            <span>Chat</span>
+        </button>
+        <button class="nav-item" onclick="switchTab('profileSection')">
+            <i class="fa-solid fa-user"></i>
+            <span>Profile</span>
+        </button>
+    </nav>
+
+    <!-- App Logic Script -->
+    <script src="app.js"></script>
+</body>
+</html>
+
