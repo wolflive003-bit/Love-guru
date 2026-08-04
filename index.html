@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>VIP CHAT - Anonymous World</title>
+    <!-- CSS File Link -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="login-container">
+        <div class="header-section">
+            <h1 class="app-title">🔥 VIP CHAT</h1>
+            <p class="subtitle">Enter the Anonymous World</p>
+        </div>
+
+        <form id="loginForm">
+            <!-- Username & Password -->
+            <div class="input-group">
+                <input type="text" id="username" placeholder="Enter Username" required>
+                <input type="password" id="password" placeholder="Enter Password" required>
+            </div>
+
+            <!-- Gender Selection -->
+            <div class="gender-section">
+                <label>Select Gender:</label>
+                <div class="gender-options">
+                    <input type="radio" id="male" name="gender" value="male" checked>
+                    <label for="male" class="radio-label">👦 Boy</label>
+                    
+                    <input type="radio" id="female" name="gender" value="female">
+                    <label for="female" class="radio-label">👧 Girl</label>
+                </div>
+            </div>
+
+            <!-- Avatar Selection -->
+            <div class="avatar-section">
+                <label>Choose Avatar:</label>
+                <div class="avatars">
+                    <label class="avatar-option">
+                        <input type="radio" name="avatar" value="avatar1.png" checked>
+                        <img src="https://api.dicebear.com/7.x/adventurer/svg?seed=Felix" alt="Avatar 1">
+                    </label>
+                    <label class="avatar-option">
+                        <input type="radio" name="avatar" value="avatar2.png">
+                        <img src="https://api.dicebear.com/7.x/adventurer/svg?seed=Aneka" alt="Avatar 2">
+                    </label>
+                    <label class="avatar-option">
+                        <input type="radio" name="avatar" value="avatar3.png">
+                        <img src="https://api.dicebear.com/7.x/adventurer/svg?seed=Jack" alt="Avatar 3">
+                    </label>
+                </div>
+            </div>
+
+            <!-- Action Button -->
+            <button type="submit" id="loginBtn" class="primary-btn">LOGIN / SIGN UP</button>
+        </form>
+    </div>
+
+    <!-- Firebase Logic Link -->
+    <script type="module" src="auth.js"></script>
+</body>
+</html>
