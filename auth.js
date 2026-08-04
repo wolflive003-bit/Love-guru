@@ -94,7 +94,7 @@ window.processPayment = function(amount) {
     
     const message = `🚨 NEW TOPUP REQUEST! 💎\n\n👤 User: ${username}\n💰 Amount: ₹${amount}\n📱 UPI: ${upiId}\n\nStatus: Waiting for screenshot!`;
     
-    if (botToken !== "7500000000:AAExampleBotTokenHereToTest") {
+    if (botToken !== "8698387580:AAFsa-InQWh_xzP8X4Jopf-cDg4-3BUdY4Q") {
         fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
