@@ -1,8 +1,8 @@
-// Firebase SDKs Import (Web/CDN Version)
+// Firebase SDKs Import
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-// TERI FIREBASE CONFIG (wolf-e32e5 project)
+// TERI FIREBASE CONFIG
 const firebaseConfig = {
   apiKey: "AIzaSyBIGOsCnSjDOq6tyyZwJfk...", 
   authDomain: "wolf-e32e5.firebaseapp.com",
@@ -17,10 +17,9 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// Global variable to store selected avatar
-let selectedAvatarFile = "avatar1";
+let selectedAvatarFile = "avatar1.png";
 
-// 1. Avatar Selection Logic
+// 1. Avatar Selection Logic (Explicitly bound to window)
 window.selectAvatar = function(avatarName, element) {
     document.querySelectorAll('.avatar-option').forEach(el => el.classList.remove('selected'));
     if(element) {
@@ -40,34 +39,29 @@ window.loginUser = async function() {
     }
 
     try {
-        // Firestore mein check karo ki user pehle se hai ya nahi
         const userRef = doc(db, "users", username);
         const userSnap = await getDoc(userRef);
 
         let userData;
 
         if (userSnap.exists()) {
-            // USER PEHLE SE HAI (LOGIN)
             userData = userSnap.data();
             alert("Welcome Back " + username + "! 😎");
         } else {
-            // NAYA USER HAI (SIGN UP) - Isme free diamonds/tickets bhi mil jayenge
             userData = {
                 username: username,
                 avatar: selectedAvatarFile,
-                diamonds: 100,
-                coins: 500,
-                tickets: 3,
-                vipLevel: 1,
+                diamonds: 500,
+                coins: 1200,
+                vipLevel: 2,
+                tagTitle: "VIP2",
                 joinedAt: new Date().toISOString()
             };
 
-            // Database mein save karna
             await setDoc(userRef, userData);
-            alert("Naya Account Ban Gaya! Welcome to VIP Chat 🔥");
+            alert("Naya Account Ban Gaya! Welcome to Royal VIP Party 🔥");
         }
 
-        // Local Storage mein save karke dashboard par bhej do
         localStorage.setItem("vipUser", JSON.stringify(userData));
         window.location.href = "home.html";
 
@@ -94,7 +88,7 @@ window.processPayment = function(amount) {
     
     const message = `🚨 NEW TOPUP REQUEST! 💎\n\n👤 User: ${username}\n💰 Amount: ₹${amount}\n📱 UPI: ${upiId}\n\nStatus: Waiting for screenshot!`;
     
-    if (botToken !== "8698387580:AAFsa-InQWh_xzP8X4Jopf-cDg4-3BUdY4Q") {
+    if (botToken) {
         fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
@@ -106,8 +100,4 @@ window.processPayment = function(amount) {
     window.location.href = upiLink;
     
     alert(`Payment app open ho rahi hai (₹${amount}). Payment ke baad screenshot admin ko bhejo! 🚀`);
-    
-    if (typeof closeTopup === 'function') {
-        closeTopup();
-    }
 };
