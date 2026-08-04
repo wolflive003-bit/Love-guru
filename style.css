@@ -1,33 +1,36 @@
-/* Basic Reset */
+/* =========================================
+   VIP CHAT - GLOBAL STYLES (Mobile First)
+   ========================================= */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    -webkit-tap-highlight-color: transparent; /* Mobile par click karne par jo blue box aata hai use hatane ke liye */
 }
 
 body {
-    background-color: #0f0f13; /* Deep Dark Background */
+    background-color: #0d0d12; /* Deep Dark Hacker Background */
     color: #ffffff;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    padding: 20px;
 }
 
-/* Login Container */
+/* =========================================
+   LOGIN CONTAINER
+   ========================================= */
 .login-container {
-    background-color: #1c1c24;
-    padding: 30px 20px;
-    border-radius: 20px;
-    width: 90%;
+    background-color: #1a1a24;
+    padding: 30px 25px;
+    border-radius: 16px;
+    width: 100%;
     max-width: 400px;
-    box-shadow: 0px 10px 30px rgba(0, 255, 170, 0.1);
+    box-shadow: 0px 8px 32px rgba(0, 255, 162, 0.15); /* Neon Green Glow */
     border: 1px solid #2d2d3a;
 }
 
-/* Header Section */
 .header-section {
     text-align: center;
     margin-bottom: 25px;
@@ -35,10 +38,9 @@ body {
 
 .app-title {
     color: #00ffa2; /* Neon Green */
-    font-size: 28px;
-    font-weight: 800;
+    font-size: 32px;
     letter-spacing: 2px;
-    text-shadow: 0px 0px 10px rgba(0, 255, 170, 0.3);
+    text-shadow: 0px 0px 10px rgba(0, 255, 162, 0.4);
 }
 
 .subtitle {
@@ -47,37 +49,41 @@ body {
     margin-top: 5px;
 }
 
-/* Form Layout */
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
+/* =========================================
+   INPUT FIELDS
+   ========================================= */
 .input-group {
     display: flex;
     flex-direction: column;
     gap: 15px;
+    margin-bottom: 20px;
 }
 
 input[type="text"], input[type="password"] {
+    width: 100%;
     padding: 14px;
     border-radius: 10px;
     border: 1px solid #333;
-    background-color: #262633;
-    color: white;
-    outline: none;
+    background-color: #242430;
+    color: #fff;
     font-size: 16px;
+    outline: none;
     transition: all 0.3s ease;
 }
 
 input[type="text"]:focus, input[type="password"]:focus {
     border-color: #00ffa2;
-    box-shadow: 0px 0px 8px rgba(0, 255, 170, 0.2);
+    box-shadow: 0px 0px 8px rgba(0, 255, 162, 0.2);
 }
 
-/* Gender Section */
-.gender-section label, .avatar-section label {
+/* =========================================
+   GENDER & AVATAR SELECTION
+   ========================================= */
+.gender-section, .avatar-section {
+    margin-bottom: 20px;
+}
+
+label {
     font-size: 14px;
     color: #bbb;
     margin-bottom: 10px;
@@ -91,31 +97,29 @@ input[type="text"]:focus, input[type="password"]:focus {
 }
 
 .gender-options input[type="radio"] {
-    display: none;
+    display: none; /* Hide default radio */
 }
 
 .radio-label {
-    background-color: #262633;
+    background-color: #242430;
     padding: 10px 20px;
     border-radius: 8px;
     border: 1px solid #333;
     cursor: pointer;
     transition: 0.3s;
-    flex: 1;
+    width: 50%;
     text-align: center;
 }
 
-.gender-options input[type="radio"]:checked + .radio-label {
-    background-color: rgba(0, 255, 170, 0.1);
+.gender-options input:checked + .radio-label {
+    background-color: rgba(0, 255, 162, 0.1);
     border-color: #00ffa2;
     color: #00ffa2;
 }
 
-/* Avatar Section */
 .avatars {
     display: flex;
-    justify-content: space-around;
-    margin-top: 10px;
+    justify-content: space-between;
 }
 
 .avatar-option input {
@@ -128,33 +132,35 @@ input[type="text"]:focus, input[type="password"]:focus {
     border-radius: 50%;
     border: 2px solid #333;
     cursor: pointer;
-    background-color: #262633;
-    transition: all 0.3s ease;
+    background-color: #242430;
+    transition: 0.3s;
 }
 
 .avatar-option input:checked + img {
-    border: 2px solid #00ffa2;
-    box-shadow: 0px 0px 15px rgba(0, 255, 170, 0.5);
+    border: 3px solid #00ffa2;
+    box-shadow: 0px 0px 15px rgba(0, 255, 162, 0.5);
     transform: scale(1.1);
 }
 
-/* Login Button */
+/* =========================================
+   BUTTONS
+   ========================================= */
 .primary-btn {
-    background: linear-gradient(90deg, #00ffa2, #00b8ff);
+    width: 100%;
+    background: linear-gradient(135deg, #00ffa2, #00b8ff);
     color: #000;
     border: none;
     padding: 16px;
-    border-radius: 12px;
+    border-radius: 10px;
     font-size: 16px;
-    font-weight: 800;
+    font-weight: bold;
     cursor: pointer;
     margin-top: 10px;
-    transition: transform 0.2s ease;
+    transition: 0.3s;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
 .primary-btn:active {
-    transform: scale(0.95);
+    transform: scale(0.97);
 }
-
