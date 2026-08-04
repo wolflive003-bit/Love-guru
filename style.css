@@ -164,3 +164,177 @@ label {
 .primary-btn:active {
     transform: scale(0.97);
 }
+/* =========================================
+   DASHBOARD & HOME PAGE STYLES
+   ========================================= */
+.dashboard-body {
+    display: block;
+    padding: 0;
+    padding-bottom: 70px; /* Space for bottom nav */
+}
+
+/* Top Header */
+.top-header {
+    background-color: #1a1a24;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #2d2d3a;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.small-avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 2px solid #00ffa2;
+}
+
+.vip-tag {
+    background: linear-gradient(90deg, #ffaa00, #ffea00);
+    color: #000;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.currency-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    font-weight: bold;
+    gap: 3px;
+}
+
+/* Content Sections */
+.content-area {
+    padding: 20px;
+}
+
+.app-section {
+    display: none; /* Hidden by default */
+    animation: fadeIn 0.3s ease;
+}
+
+.active-section {
+    display: block; /* Show active section */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+h2 {
+    color: #00ffa2;
+    margin-bottom: 20px;
+    font-size: 22px;
+}
+
+/* Cards */
+.match-card, .room-card, .profile-card {
+    background-color: #1a1a24;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #2d2d3a;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.match-gender {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.gender-btn {
+    background-color: #242430;
+    color: #fff;
+    border: 1px solid #333;
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.gender-btn.active {
+    background-color: #00ffa2;
+    color: #000;
+    font-weight: bold;
+}
+
+.topup-banner {
+    background: linear-gradient(135deg, #1a1a24, #2a2a3d);
+    border: 1px solid #00b8ff;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0px 0px 15px rgba(0, 184, 255, 0.2);
+}
+
+.topup-banner h3 {
+    color: #00b8ff;
+}
+
+.large-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid #00ffa2;
+    margin-bottom: 15px;
+}
+
+/* Bottom Navigation */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #1a1a24;
+    display: flex;
+    justify-content: space-around;
+    padding: 12px 0;
+    border-top: 1px solid #2d2d3a;
+}
+
+.nav-item {
+    background: none;
+    border: none;
+    color: #888;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.nav-item.active {
+    color: #00ffa2;
+}
+
+.nav-item i {
+    font-size: 20px;
+}
+
+.logout-btn {
+    background-color: #ff3333;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
+}
