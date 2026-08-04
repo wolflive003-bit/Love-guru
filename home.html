@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="style.css">
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Agora Web SDK for Voice Rooms -->
+    <script src="https://download.agora.io/sdk/release/AgoraRTC_N.js"></script>
 </head>
 <body class="dashboard-body">
 
@@ -55,26 +57,39 @@
         <!-- SECTION 2: LIVE ROOMS (Agora) -->
         <section id="liveSection" class="app-section">
             <h2>Live Audio Rooms 🎙️</h2>
-            <div class="room-list">
-                <div class="room-card">
-                    <h4>Late Night Chill 🌙</h4>
-                    <p>Host: VIP_Rahul | 👥 12/50</p>
-                    <button class="join-btn">Join</button>
-                </div>
-                <div class="room-card">
-                    <h4>Only VIPs 😎</h4>
-                    <p>Host: Hacker_007 | 👥 5/10</p>
-                    <button class="join-btn">Join</button>
+            
+            <!-- Room Controls -->
+            <div class="room-controls">
+                <button class="primary-btn" onclick="createVoiceRoom()">+ CREATE NEW ROOM</button>
+                <p style="text-align:center; margin: 10px 0; color: #888;">OR</p>
+                <div class="join-box">
+                    <input type="text" id="joinRoomUid" placeholder="Enter Room UID (e.g. 1234)">
+                    <button class="secondary-btn" onclick="joinVoiceRoom()">JOIN 🎧</button>
                 </div>
             </div>
-            <button class="primary-btn" style="margin-top: 20px;">+ CREATE ROOM</button>
+
+            <!-- Active Call UI (Hidden by default) -->
+            <div id="activeCallUI" class="active-room-card" style="display: none;">
+                <h3 id="currentRoomDisplay">Room UID: <span style="color:#00ffa2;">---</span></h3>
+                <p>Status: <span id="callStatus" style="color: yellow;">Connecting...</span></p>
+                <div class="mic-controls">
+                    <button id="micBtn" class="action-btn mic-on" onclick="toggleMic()">🎙️ Mic ON</button>
+                    <button class="logout-btn" onclick="leaveVoiceRoom()">Leave Room ❌</button>
+                </div>
+            </div>
         </section>
 
-        <!-- SECTION 3: CHATS (CometChat) -->
+        <!-- SECTION 3: CHATS (CometChat UI) -->
         <section id="chatSection" class="app-section">
             <h2>Private Chats 💬</h2>
-            <div class="chat-list">
-                <p style="text-align: center; color: #888; margin-top: 20px;">No active chats. Find a match first!</p>
+            
+            <div class="search-box">
+                <input type="text" id="searchUserId" placeholder="Search Username to Chat...">
+                <button class="secondary-btn" onclick="searchUserForChat()">🔍</button>
+            </div>
+
+            <div class="chat-list" id="chatListContainer">
+                <p style="text-align: center; color: #888; margin-top: 20px;">Search a user to start messaging!</p>
             </div>
         </section>
 
@@ -114,8 +129,31 @@
         </button>
     </nav>
 
+    <!-- Custom VIP Top-Up Modal -->
+    <div id="topupModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeTopup()">&times;</span>
+            <h2 style="color: #00b8ff;">💎 VIP STORE 💎</h2>
+            <p style="color: #bbb; font-size: 14px; margin-bottom: 20px;">Select a pack to upgrade!</p>
+            
+            <div class="pack-container">
+                <button class="pack-btn" onclick="processPayment(10)">
+                    <span class="pack-price">₹10</span>
+                    <span class="pack-reward">500 💎</span>
+                </button>
+                <button class="pack-btn" onclick="processPayment(50)">
+                    <span class="pack-price">₹50</span>
+                    <span class="pack-reward">3000 💎 + VIP 1</span>
+                </button>
+                <button class="pack-btn" onclick="processPayment(100)">
+                    <span class="pack-price">₹100</span>
+                    <span class="pack-reward">8000 💎 + VIP 2</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- App Logic Script -->
     <script src="app.js"></script>
 </body>
 </html>
-
