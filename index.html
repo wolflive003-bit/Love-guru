@@ -3,81 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Love Guru - VIP Login</title>
+    <title>Love Guru - Royal VIP Login</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="login-container">
         <div class="logo-box">
-            <h1>💘 Love Guru VIP</h1>
-            <p>Enter the ultimate gaming & voice community</p>
+            <h1>🌹 Love Guru VIP</h1>
+            <p>Enter the Royal Voice & Party Community</p>
         </div>
 
         <div class="form-group">
-            <label>Your Username</label>
-            <input type="text" id="usernameInput" placeholder="Enter your gamer tag..." autocomplete="off">
+            <label>Your Gamer Tag</label>
+            <input type="text" id="usernameInput" placeholder="Enter username..." autocomplete="off">
         </div>
 
         <div class="form-group">
-            <label>Choose Your Avatar</label>
+            <label>Choose Avatar & Frame</label>
             <div class="avatar-selector">
                 <div class="avatar-option selected" onclick="selectAvatar('avatar1.png', this)">
-                    <img src="https://api.dicebear.com/7.x/adventurer/svg?seed=Felix" alt="Avatar 1">
+                    <img src="https://api.dicebear.com/7.x/adventurer/svg?seed=Bandit" alt="Avatar 1">
                 </div>
                 <div class="avatar-option" onclick="selectAvatar('avatar2.png', this)">
-                    <img src="https://api.dicebear.com/7.x/adventurer/svg?seed=Aneka" alt="Avatar 2">
+                    <img src="https://api.dicebear.com/7.x/adventurer/svg?seed=Garfield" alt="Avatar 2">
                 </div>
-                <div class="avatar-option" onclick="selectAvatar('avatar3.png', this)">
-                    <img src="https://api.dicebear.com/7.x/adventurer/svg?seed=Jack" alt="Avatar 3">
-                </div>
-                <div class="avatar-option vip-exclusive" onclick="selectAvatar('avatar4.png', this)">
-                    <img src="https://api.dicebear.com/7.x/adventurer/svg?seed=VIPBoss" alt="VIP Boss">
-                    <span class="vip-tag-mini">VIP</span>
-                </div>
-                <div class="avatar-option vip-exclusive" onclick="selectAvatar('avatar5.png', this)">
-                    <img src="https://api.dicebear.com/7.x/adventurer/svg?seed=CyberQueen" alt="Cyber Queen">
+                <div class="avatar-option vip-exclusive" onclick="selectAvatar('avatar3.png', this)">
+                    <img src="https://api.dicebear.com/7.x/adventurer/svg?seed=Destructor" alt="VIP Boss">
                     <span class="vip-tag-mini">VIP</span>
                 </div>
             </div>
         </div>
 
-        <button class="main-btn" onclick="loginUser()">Enter Community 🚀</button>
+        <button class="main-btn" onclick="loginUser()">Enter Royal Party 🚀</button>
     </div>
 
-    <script>
-        let selectedAvatarFile = "avatar1.png";
-
-        function selectAvatar(avatarName, element) {
-            const options = document.querySelectorAll('.avatar-option');
-            options.forEach(el => el.classList.remove('selected'));
-            
-            if(element) {
-                element.classList.add('selected');
-            }
-            selectedAvatarFile = avatarName;
-        }
-
-        function loginUser() {
-            const usernameInput = document.getElementById("usernameInput");
-            const username = usernameInput ? usernameInput.value.trim() : "";
-            
-            if (username === "") {
-                alert("Bhai apna username toh likh! ❌");
-                return;
-            }
-
-            const userData = {
-                username: username,
-                avatar: selectedAvatarFile,
-                diamonds: 100,
-                coins: 500,
-                tickets: 3,
-                vipLevel: 1
-            };
-
-            localStorage.setItem("vipUser", JSON.stringify(userData));
-            window.location.href = "home.html";
-        }
-    </script>
+    <script src="auth.js"></script>
 </body>
 </html>
